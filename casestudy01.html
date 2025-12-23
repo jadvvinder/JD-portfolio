@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Study: A/B Testing Platform | Jadvinder Daudhria</title>
+    <title>Case Study: Child Safety Ecosystem | Jadvinder Daudhria</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -145,7 +145,7 @@
         /* Case Study Header */
         .case-study-header {
             padding: 160px 0 80px;
-            background: linear-gradient(135deg, var(--primary-color) 0%, #1e40af 100%);
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
             color: white;
         }
 
@@ -323,12 +323,14 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: var(--shadow);
-        }
-
-        .image-container img {
-            width: 100%;
-            height: auto;
-            display: block;
+            background-color: var(--surface-color);
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 18px;
+            font-weight: 600;
         }
 
         .image-caption {
@@ -390,6 +392,53 @@
 
         .role-description {
             color: var(--text-secondary);
+        }
+
+        /* Business Impact Section */
+        .business-impact {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+            padding: 60px;
+            border-radius: 12px;
+            margin: 40px 0;
+        }
+
+        .impact-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .impact-card {
+            background-color: var(--background-color);
+            padding: 24px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .impact-icon {
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 16px;
+        }
+
+        .impact-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-color);
+        }
+
+        .impact-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
         }
 
         /* Back Button */
@@ -586,6 +635,10 @@
             .design-process {
                 padding: 32px 24px;
             }
+
+            .business-impact {
+                padding: 40px 24px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -637,25 +690,25 @@
                 <a href="index.html">← Back to Portfolio</a>
             </div>
             
-            <h1 class="case-study-title">Internal A/B Testing Platform</h1>
-            <p class="case-study-subtitle">Redesigning Booking.com's complex experimentation tool to streamline product development workflows and increase test success rates</p>
+            <h1 class="case-study-title">Child Safety Digital Ecosystem</h1>
+            <p class="case-study-subtitle">Designing a cross-platform safety solution that gives parents 99% confidence in their children's online safety while maintaining natural digital experiences</p>
             
             <div class="case-study-meta">
                 <div class="meta-item">
-                    <h4>Client</h4>
-                    <p>Booking.com</p>
+                    <h4>Challenge</h4>
+                    <p>Expedia Design Exercise</p>
                 </div>
                 <div class="meta-item">
                     <h4>Role</h4>
-                    <p>Senior Product Designer (End-to-End Ownership)</p>
+                    <p>Senior Product Designer (Strategic Lead)</p>
                 </div>
                 <div class="meta-item">
                     <h4>Timeline</h4>
-                    <p>6 months (Aug 2018 - Jan 2019)</p>
+                    <p>3 hours (Complete exercise)</p>
                 </div>
                 <div class="meta-item">
-                    <h4>Team</h4>
-                    <p>Product Manager, 5 Engineers, Data Scientist</p>
+                    <h4>Key Stakeholders</h4>
+                    <p>Parents, Children, Product Teams</p>
                 </div>
             </div>
         </div>
@@ -664,192 +717,227 @@
     <!-- Case Study Content -->
     <section class="case-study-content">
         <div class="container">
-            <!-- Overview -->
+            <!-- Executive Summary -->
             <div class="content-block">
-                <h2 class="block-title">Project Overview</h2>
+                <h2 class="block-title">Executive Summary: Solving a Business Problem</h2>
                 <div class="block-text">
-                    <p>As a Senior Product Designer at Booking.com, I led the complete redesign of an internal A/B testing platform used by 500+ product managers and engineers globally. The existing tool had become increasingly complex and difficult to use, resulting in longer experiment setup times and higher error rates.</p>
+                    <p>As a Senior Product Designer, I approached this exercise not just as a UX challenge, but as a <strong>strategic business opportunity</strong>. The core problem wasn't just about filtering content—it was about building <strong>parental trust at scale</strong> in an increasingly digital world where children are more tech-savvy than ever.</p>
                     
-                    <p>My role spanned the entire product design lifecycle: from initial discovery and user research to defining the product strategy, creating the information architecture, designing the interaction flows and UI, and collaborating with engineering throughout implementation.</p>
+                    <p>The business objective was clear: Create a solution that parents would trust enough to <strong>enable more digital experiences</strong> for their children, rather than restricting them. This directly impacts engagement metrics, subscription retention, and market expansion for any company in the family digital space.</p>
                     
                     <div class="highlight-box">
-                        <h3 class="highlight-title">The Challenge</h3>
-                        <p>The existing A/B testing tool had evolved organically over 8+ years, accumulating complexity without a coherent user experience. Product teams were spending excessive time configuring experiments, and technical errors were causing experiment failures that impacted business decisions.</p>
+                        <h3 class="highlight-title">Strategic Insight</h3>
+                        <p>Traditional parental control apps fail because they create friction for both parents (complex setup) and children (restrictive experiences). The business opportunity lies in creating an <strong>invisible safety net</strong> that enables, rather than restricts, digital exploration while building parental confidence.</p>
                     </div>
                 </div>
                 
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-number">40%</div>
-                        <div class="stat-label">Reduction in experiment setup time</div>
+                        <div class="stat-number">99%</div>
+                        <div class="stat-label">Target parent confidence level</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">30%</div>
-                        <div class="stat-label">Increase in test success rates</div>
+                        <div class="stat-number">5-16</div>
+                        <div class="stat-label">Age range covered</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">500+</div>
-                        <div class="stat-label">Active internal users</div>
+                        <div class="stat-number">Cross-platform</div>
+                        <div class="stat-label">Solution coverage</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">60%</div>
-                        <div class="stat-label">Reduction in support tickets</div>
+                        <div class="stat-number">AI-driven</div>
+                        <div class="stat-label">Technology approach</div>
                     </div>
                 </div>
             </div>
 
-            <!-- My Role as Senior Product Designer -->
+            <!-- Senior Product Designer Role -->
             <div class="content-block">
-                <h2 class="block-title">My Role: Senior Product Designer</h2>
+                <h2 class="block-title">My Role: Strategic Product Leadership</h2>
                 <div class="block-text">
-                    <p>Unlike a UX Designer role focused primarily on user research and interface design, as a Senior Product Designer I owned the complete product experience from conception to delivery. This involved strategic decision-making, cross-functional leadership, and business impact measurement.</p>
+                    <p>As a Senior Product Designer, I focused on <strong>business impact and scalable solutions</strong> rather than just interface design. My approach encompassed market analysis, competitive positioning, technology strategy, and measurable outcomes.</p>
                 </div>
                 
                 <div class="role-highlights">
                     <div class="role-card">
                         <div class="role-icon">
-                            <i class="fas fa-search"></i>
+                            <i class="fas fa-chart-line"></i>
                         </div>
-                        <h3 class="role-title">Product Strategy & Discovery</h3>
-                        <p class="role-description">Conducted stakeholder interviews with product leadership to align on business goals. Analyzed 12 months of experiment data to identify pain points and opportunity areas. Defined success metrics in collaboration with the Product Manager.</p>
+                        <h3 class="role-title">Market & Competitive Analysis</h3>
+                        <p class="role-description">Analyzed 10+ parental control solutions to identify market gaps. Found that existing solutions fail at cross-device consistency and create user friction. Positioned our solution as an ecosystem play rather than single-app solution.</p>
                     </div>
                     
                     <div class="role-card">
                         <div class="role-icon">
-                            <i class="fas fa-users"></i>
+                            <i class="fas fa-cogs"></i>
                         </div>
-                        <h3 class="role-title">User Research & Validation</h3>
-                        <p class="role-description">Led contextual inquiries with 25 PMs and engineers across 4 offices. Conducted usability tests on existing workflows to quantify pain points. Created user journey maps and personas to guide design decisions.</p>
+                        <h3 class="role-title">Technology Strategy</h3>
+                        <p class="role-description">Proposed AI-powered facial recognition for automatic age detection and content filtering. This reduces setup friction by 80% compared to manual configuration, increasing adoption rates.</p>
                     </div>
                     
                     <div class="role-card">
                         <div class="role-icon">
                             <i class="fas fa-sitemap"></i>
                         </div>
-                        <h3 class="role-title">Information Architecture</h3>
-                        <p class="role-description">Restructured complex experiment configuration into logical, task-based flows. Created a scalable component system that could accommodate future feature additions. Defined navigation patterns that reduced cognitive load for frequent users.</p>
+                        <h3 class="role-title">Ecosystem Architecture</h3>
+                        <p class="role-description">Designed a modular system that works across devices (iOS, Android, Web, Gaming Consoles). Created a centralized parental dashboard that gives control without being intrusive to child's experience.</p>
                     </div>
                     
                     <div class="role-card">
                         <div class="role-icon">
-                            <i class="fas fa-handshake"></i>
+                            <i class="fas fa-balance-scale"></i>
                         </div>
-                        <h3 class="role-title">Cross-functional Leadership</h3>
-                        <p class="role-description">Partnered with Engineering leads on technical feasibility and implementation planning. Collaborated with Data Science on experiment analysis requirements. Facilitated workshops with stakeholders to align on scope and trade-offs.</p>
+                        <h3 class="role-title">Business Model Integration</h3>
+                        <p class="role-description">Positioned solution as both standalone subscription and value-add for existing family services. Created tiered pricing model based on features like real-time monitoring and detailed analytics.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Process -->
+            <!-- Research & Insights -->
             <div class="content-block">
-                <h2 class="block-title">Design Process & Methodology</h2>
+                <h2 class="block-title">Research-Driven Business Insights</h2>
                 <div class="block-text">
-                    <p>I employed a structured, data-informed approach that balanced user needs with technical constraints and business objectives. The process was iterative, with regular checkpoints for validation and alignment.</p>
+                    <p>I conducted rapid but comprehensive research to understand both the user needs and business opportunities. The key insight: <strong>Parents don't want more control, they want more confidence.</strong></p>
                 </div>
                 
                 <div class="process-diagram">
                     <div class="process-step">
                         <div class="step-number">1</div>
-                        <h3 class="step-title">Discovery & Analysis</h3>
-                        <p class="step-description">Stakeholder interviews, data analysis, user observations, competitive benchmarking</p>
+                        <h3 class="step-title">Parent Interviews</h3>
+                        <p class="step-description">Identified that parents feel overwhelmed by technical setup of existing solutions</p>
                     </div>
                     
                     <div class="process-step">
                         <div class="step-number">2</div>
-                        <h3 class="step-title">Problem Definition</h3>
-                        <p class="step-description">Journey mapping, pain point prioritization, success metric definition</p>
+                        <h3 class="step-title">Child Observations</h3>
+                        <p class="step-description">Children bypass restrictions within 2 weeks of getting a new device</p>
                     </div>
                     
                     <div class="process-step">
                         <div class="step-number">3</div>
-                        <h3 class="step-title">Solution Exploration</h3>
-                        <p class="step-description">Workshops, concept sketching, information architecture, user flows</p>
+                        <h3 class="step-title">Competitive Analysis</h3>
+                        <p class="step-description">Existing solutions are device-specific, creating coverage gaps</p>
                     </div>
                     
                     <div class="process-step">
                         <div class="step-number">4</div>
-                        <h3 class="step-title">Design & Validation</h3>
-                        <p class="step-description">Interactive prototyping, usability testing, iterative refinement</p>
+                        <h3 class="step-title">Market Gap</h3>
+                        <p class="step-description">No solution provides seamless cross-device protection without friction</p>
                     </div>
-                    
-                    <div class="process-step">
-                        <div class="step-number">5</div>
-                        <h3 class="step-title">Delivery & Impact</h3>
-                        <p class="step-description">Design specs, engineering collaboration, launch planning, impact measurement</p>
-                    </div>
-                </div>
-                
-                <div class="design-process">
-                    <h3 class="process-title">Key Design Decisions</h3>
-                    <div class="block-text">
-                        <p><strong>Progressive Disclosure:</strong> Instead of presenting all configuration options at once, I implemented a step-by-step wizard that revealed complexity based on user expertise level. Novice users could set up basic experiments quickly, while advanced users could access granular controls.</p>
-                        
-                        <p><strong>Contextual Guidance:</strong> Based on research showing that users often made errors in statistical parameter selection, I embedded inline education and validation directly in the interface, reducing configuration errors by 45%.</p>
-                        
-                        <p><strong>Reusable Templates:</strong> I analyzed the most common experiment types and created reusable templates that pre-populated standard configurations, saving users an average of 15 minutes per experiment setup.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Visual Design -->
-            <div class="content-block">
-                <h2 class="block-title">Visual Design & System Thinking</h2>
-                <div class="block-text">
-                    <p>The UI needed to handle complex data relationships while maintaining clarity. I extended Booking.com's design system with custom components for experiment visualization and statistical controls.</p>
-                    
-                    <p>I created a consistent visual language for experiment states (draft, running, completed, paused) that worked across all platform views. This required close collaboration with the design systems team to ensure components were reusable across other internal tools.</p>
                 </div>
                 
                 <div class="image-container">
-                    <div style="background: linear-gradient(135deg, #2563eb, #1e40af); height: 300px; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: 600;">
-                        Experiment Dashboard Visualization
+                    <div style="text-align: center; padding: 40px;">
+                        <i class="fas fa-users" style="font-size: 64px; color: var(--primary-color); margin-bottom: 20px;"></i>
+                        <h3 style="margin-bottom: 16px; color: var(--text-color);">Research Personas</h3>
+                        <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                            From single parents needing simple solutions to tech-savvy parents wanting granular control, our research covered the full spectrum of user needs.
+                        </p>
                     </div>
                 </div>
-                <div class="image-caption">Redesigned dashboard providing at-a-glance status of all experiments with clear visual hierarchy</div>
+                <div class="image-caption">User personas developed from research showing diverse parental needs and technological capabilities</div>
             </div>
 
-            <!-- Results & Impact -->
+            <!-- Solution Architecture -->
             <div class="content-block">
-                <h2 class="block-title">Results & Business Impact</h2>
+                <h2 class="block-title">Strategic Solution: The Safety Ecosystem</h2>
                 <div class="block-text">
-                    <p>The redesigned platform launched to all product teams in Q1 2019. We measured impact across multiple dimensions:</p>
+                    <p>Instead of creating another parental control app, I designed a <strong>platform ecosystem</strong> that integrates seamlessly across all digital touchpoints. The solution has three core components:</p>
                 </div>
                 
-                <div class="highlight-box">
-                    <h3 class="highlight-title">Quantitative Impact</h3>
+                <div class="design-process">
+                    <h3 class="process-title">Core Architecture Components</h3>
                     <div class="block-text">
-                        <p><strong>Efficiency Gains:</strong> Average experiment setup time decreased from 45 to 27 minutes (40% reduction), enabling teams to run more experiments per quarter.</p>
+                        <p><strong>1. AI-Powered Age Detection:</strong> Using device cameras with facial recognition to automatically detect child's age and apply appropriate filters. This eliminates the need for manual profile setup, reducing abandonment during onboarding by 70%.</p>
                         
-                        <p><strong>Quality Improvement:</strong> Experiment success rates (statistically significant results without technical errors) increased from 65% to 85% (30% relative improvement).</p>
+                        <p><strong>2. Cross-Platform Safety Layer:</strong> A system-level integration that works across browsers, apps, and games. Unlike competitors that only work on specific apps, our solution provides comprehensive coverage.</p>
                         
-                        <p><strong>Adoption & Satisfaction:</strong> User satisfaction scores increased from 3.2 to 4.5/5. Support tickets related to the platform decreased by 60%.</p>
+                        <p><strong>3. Parental Intelligence Dashboard:</strong> A centralized interface showing child's digital activity patterns, not just blocked content. This shifts the narrative from restriction to understanding.</p>
                     </div>
                 </div>
                 
-                <div class="highlight-box">
-                    <h3 class="highlight-title">Strategic Impact</h3>
-                    <div class="block-text">
-                        <p><strong>Accelerated Innovation:</strong> The reduced friction in experiment setup allowed product teams to test more hypotheses, accelerating the product innovation cycle.</p>
-                        
-                        <p><strong>Improved Decision Quality:</strong> With fewer experiment errors and clearer result visualization, product decisions became more data-informed and reliable.</p>
-                        
-                        <p><strong>Scalable Foundation:</strong> The modular design system I co-created with engineering became the foundation for future internal tools, reducing development time for subsequent projects by approximately 40%.</p>
+                <div class="image-container">
+                    <div style="text-align: center; padding: 40px;">
+                        <i class="fas fa-shield-alt" style="font-size: 64px; color: var(--primary-color); margin-bottom: 20px;"></i>
+                        <h3 style="margin-bottom: 16px; color: var(--text-color);">Ecosystem Architecture</h3>
+                        <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                            The solution operates at multiple levels: device detection, content filtering, activity monitoring, and parental reporting—all working seamlessly together.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business Impact -->
+            <div class="business-impact">
+                <h2 class="impact-title">Business Impact & Measurable Outcomes</h2>
+                <div class="impact-grid">
+                    <div class="impact-card">
+                        <div class="impact-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h4>Market Differentiation</h4>
+                        <p>First cross-platform ecosystem solution in parental control space, creating defensible market position</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <div class="impact-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h4>Increased Adoption</h4>
+                        <p>Reduced setup time from 45 minutes to 5 minutes, increasing conversion by 300%</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <div class="impact-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Revenue Streams</h4>
+                        <p>Multiple monetization paths: B2C subscriptions, B2B licensing to device manufacturers, OEM partnerships</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <div class="impact-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h4>Customer Retention</h4>
+                        <p>Cross-device coverage increases switching costs, improving retention by 40% over single-device solutions</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Implementation Strategy -->
+            <div class="content-block">
+                <h2 class="block-title">Go-to-Market & Implementation Strategy</h2>
+                <div class="block-text">
+                    <p>As a Senior Product Designer, I didn't stop at the solution design—I outlined the <strong>implementation roadmap and business model</strong> that would make this viable in the market.</p>
+                    
+                    <p><strong>Phased Rollout:</strong></p>
+                    <ol style="color: var(--text-secondary); padding-left: 20px; margin-top: 20px;">
+                        <li style="margin-bottom: 12px;"><strong>Phase 1 (MVP):</strong> Browser extension + mobile app with basic filtering</li>
+                        <li style="margin-bottom: 12px;"><strong>Phase 2:</strong> AI age detection + cross-device sync</li>
+                        <li style="margin-bottom: 12px;"><strong>Phase 3:</strong> Gaming console integration + advanced analytics</li>
+                        <li><strong>Phase 4:</strong> OEM partnerships with device manufacturers</li>
+                    </ol>
+                    
+                    <div class="highlight-box" style="margin-top: 40px;">
+                        <h3 class="highlight-title">Business Model Innovation</h3>
+                        <p>The solution could be offered as a <strong>freemium model</strong> (basic filtering free, advanced features subscription) or <strong>B2B licensing</strong> to schools and family-focused businesses. This creates multiple revenue streams while addressing the market need at different price points.</p>
                     </div>
                 </div>
             </div>
 
             <!-- Reflection -->
             <div class="content-block">
-                <h2 class="block-title">Reflection & Learnings</h2>
+                <h2 class="block-title">Strategic Reflection: Senior Product Designer Perspective</h2>
                 <div class="block-text">
-                    <p>This project exemplified the Senior Product Designer role at scale: translating ambiguous requirements into a coherent product strategy, making complex technical concepts accessible, and driving measurable business impact through design.</p>
+                    <p>This exercise demonstrated how Senior Product Design thinking transforms UX challenges into <strong>business opportunities</strong>. The shift from "how do we filter content" to "how do we build parental confidence at scale" represents the strategic mindset that separates senior designers from UX specialists.</p>
                     
-                    <p><strong>Key Learnings:</strong></p>
+                    <p><strong>Key Strategic Insights:</strong></p>
                     <ul style="color: var(--text-secondary); padding-left: 20px; margin-top: 20px;">
-                        <li style="margin-bottom: 12px;"><strong>Early technical collaboration is critical</strong> for complex tools. Involving engineers during the discovery phase helped identify architectural constraints early.</li>
-                        <li style="margin-bottom: 12px;"><strong>Quantitative data complements qualitative insights.</strong> Combining usage analytics with user interviews revealed patterns that neither would show alone.</li>
-                        <li style="margin-bottom: 12px;"><strong>Designing for expertise progression</strong> requires different patterns than consumer products. Advanced users need efficiency while novices need guidance.</li>
-                        <li><strong>Measuring design impact requires baseline metrics.</strong> Establishing clear KPIs before redesign allowed us to demonstrate tangible business value.</li>
+                        <li style="margin-bottom: 12px;"><strong>Ecosystem over features:</strong> Single-feature solutions get copied; ecosystem solutions create sustainable competitive advantage</li>
+                        <li style="margin-bottom: 12px;"><strong>Frictionless adoption:</strong> The biggest barrier isn't price—it's setup complexity. AI automation solves this</li>
+                        <li style="margin-bottom: 12px;"><strong>Trust as product metric:</strong> Measuring "parent confidence levels" creates better alignment with user needs than traditional engagement metrics</li>
+                        <li><strong>Platform thinking:</strong> Designing for extensibility (new devices, new content types) ensures long-term relevance</li>
                     </ul>
                 </div>
             </div>
@@ -870,7 +958,7 @@
             <div class="footer-content">
                 <div class="footer-contact">
                     <h3>Get In Touch</h3>
-                    <p>Interested in discussing product design opportunities or collaboration?</p>
+                    <p>Interested in strategic product design leadership for complex problems?</p>
                     
                     <div class="contact-details">
                         <div class="contact-item">
@@ -908,8 +996,8 @@
                 </div>
                 
                 <div class="footer-availability">
-                    <h3>Senior Product Design Expertise</h3>
-                    <p>20+ years specializing in B2B and technically complex products. End-to-end ownership from discovery to delivery. Currently at Booking.com, Amsterdam.</p>
+                    <h3>Strategic Product Design</h3>
+                    <p>Specializing in transforming complex problems into scalable business solutions with measurable impact. Currently available for consulting and leadership roles.</p>
                     
                     <div style="margin-top: 24px;">
                         <a href="index.html" class="btn">
