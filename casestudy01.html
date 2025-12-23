@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: A/B Testing Platform | Jadvinder Daudhria</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e293b;
+            --background-color: #ffffff;
+            --surface-color: #f8fafc;
+            --text-color: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s ease;
+        }
+
+        .dark-mode {
+            --primary-color: #3b82f6;
+            --secondary-color: #f1f5f9;
+            --background-color: #0f172a;
+            --surface-color: #1e293b;
+            --text-color: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --border-color: #334155;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: var(--transition);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--background-color);
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--surface-color);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Case Study Header */
+        .case-study-header {
+            padding: 160px 0 80px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1e40af 100%);
+            color: white;
+        }
+
+        .case-study-header .container {
+            max-width: 900px;
+        }
+
+        .case-study-breadcrumb {
+            margin-bottom: 20px;
+        }
+
+        .case-study-breadcrumb a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .case-study-breadcrumb a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .case-study-title {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .case-study-subtitle {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 700px;
+        }
+
+        .case-study-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .meta-item h4 {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .meta-item p {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* Case Study Content */
+        .case-study-content {
+            padding: 80px 0;
+        }
+
+        .content-block {
+            margin-bottom: 80px;
+        }
+
+        .content-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .block-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text-color);
+        }
+
+        .block-text {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        .block-text p {
+            margin-bottom: 20px;
+        }
+
+        .highlight-box {
+            background-color: var(--surface-color);
+            border-left: 4px solid var(--primary-color);
+            padding: 32px;
+            border-radius: 8px;
+            margin: 40px 0;
+        }
+
+        .highlight-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-color);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background-color: var(--surface-color);
+            padding: 32px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .process-diagram {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin: 40px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 24px;
+            background-color: var(--surface-color);
+            border-radius: 12px;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-color);
+        }
+
+        .step-description {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .image-container {
+            margin: 40px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-caption {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        .design-process {
+            background-color: var(--surface-color);
+            padding: 48px;
+            border-radius: 12px;
+            margin: 40px 0;
+        }
+
+        .process-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        /* Role Highlights */
+        .role-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .role-card {
+            background-color: var(--surface-color);
+            padding: 32px;
+            border-radius: 12px;
+        }
+
+        .role-icon {
+            width: 48px;
+            height: 48px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .role-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-color);
+        }
+
+        .role-description {
+            color: var(--text-secondary);
+        }
+
+        /* Back Button */
+        .back-button {
+            text-align: center;
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--surface-color);
+            padding: 60px 0 40px;
+            transition: var(--transition);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            margin-bottom: 40px;
+        }
+
+        .footer-contact h3 {
+            font-size: 24px;
+            margin-bottom: 24px;
+            color: var(--text-color);
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--background-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 18px;
+        }
+
+        .contact-text h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-color);
+        }
+
+        .contact-text p {
+            color: var(--text-secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: var(--background-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            font-size: 18px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .case-study-title {
+                font-size: 40px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+            
+            .process-diagram {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--background-color);
+                flex-direction: column;
+                padding: 24px;
+                gap: 0;
+                box-shadow: var(--shadow);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav-links li {
+                width: 100%;
+                padding: 16px 0;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .case-study-title {
+                font-size: 36px;
+            }
+
+            .case-study-subtitle {
+                font-size: 18px;
+            }
+
+            .block-title {
+                font-size: 28px;
+            }
+
+            .design-process {
+                padding: 32px 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .case-study-title {
+                font-size: 32px;
+            }
+
+            .case-study-header {
+                padding: 140px 0 60px;
+            }
+
+            .case-study-content {
+                padding: 60px 0;
+            }
+
+            .stat-number {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">JD</a>
+            
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#case-studies">Case Studies</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Case Study Header -->
+    <section class="case-study-header">
+        <div class="container">
+            <div class="case-study-breadcrumb">
+                <a href="index.html">← Back to Portfolio</a>
+            </div>
+            
+            <h1 class="case-study-title">Internal A/B Testing Platform</h1>
+            <p class="case-study-subtitle">Redesigning Booking.com's complex experimentation tool to streamline product development workflows and increase test success rates</p>
+            
+            <div class="case-study-meta">
+                <div class="meta-item">
+                    <h4>Client</h4>
+                    <p>Booking.com</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Role</h4>
+                    <p>Senior Product Designer (End-to-End Ownership)</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Timeline</h4>
+                    <p>6 months (Aug 2018 - Jan 2019)</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Team</h4>
+                    <p>Product Manager, 5 Engineers, Data Scientist</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study Content -->
+    <section class="case-study-content">
+        <div class="container">
+            <!-- Overview -->
+            <div class="content-block">
+                <h2 class="block-title">Project Overview</h2>
+                <div class="block-text">
+                    <p>As a Senior Product Designer at Booking.com, I led the complete redesign of an internal A/B testing platform used by 500+ product managers and engineers globally. The existing tool had become increasingly complex and difficult to use, resulting in longer experiment setup times and higher error rates.</p>
+                    
+                    <p>My role spanned the entire product design lifecycle: from initial discovery and user research to defining the product strategy, creating the information architecture, designing the interaction flows and UI, and collaborating with engineering throughout implementation.</p>
+                    
+                    <div class="highlight-box">
+                        <h3 class="highlight-title">The Challenge</h3>
+                        <p>The existing A/B testing tool had evolved organically over 8+ years, accumulating complexity without a coherent user experience. Product teams were spending excessive time configuring experiments, and technical errors were causing experiment failures that impacted business decisions.</p>
+                    </div>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">40%</div>
+                        <div class="stat-label">Reduction in experiment setup time</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">30%</div>
+                        <div class="stat-label">Increase in test success rates</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Active internal users</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">60%</div>
+                        <div class="stat-label">Reduction in support tickets</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My Role as Senior Product Designer -->
+            <div class="content-block">
+                <h2 class="block-title">My Role: Senior Product Designer</h2>
+                <div class="block-text">
+                    <p>Unlike a UX Designer role focused primarily on user research and interface design, as a Senior Product Designer I owned the complete product experience from conception to delivery. This involved strategic decision-making, cross-functional leadership, and business impact measurement.</p>
+                </div>
+                
+                <div class="role-highlights">
+                    <div class="role-card">
+                        <div class="role-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3 class="role-title">Product Strategy & Discovery</h3>
+                        <p class="role-description">Conducted stakeholder interviews with product leadership to align on business goals. Analyzed 12 months of experiment data to identify pain points and opportunity areas. Defined success metrics in collaboration with the Product Manager.</p>
+                    </div>
+                    
+                    <div class="role-card">
+                        <div class="role-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="role-title">User Research & Validation</h3>
+                        <p class="role-description">Led contextual inquiries with 25 PMs and engineers across 4 offices. Conducted usability tests on existing workflows to quantify pain points. Created user journey maps and personas to guide design decisions.</p>
+                    </div>
+                    
+                    <div class="role-card">
+                        <div class="role-icon">
+                            <i class="fas fa-sitemap"></i>
+                        </div>
+                        <h3 class="role-title">Information Architecture</h3>
+                        <p class="role-description">Restructured complex experiment configuration into logical, task-based flows. Created a scalable component system that could accommodate future feature additions. Defined navigation patterns that reduced cognitive load for frequent users.</p>
+                    </div>
+                    
+                    <div class="role-card">
+                        <div class="role-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3 class="role-title">Cross-functional Leadership</h3>
+                        <p class="role-description">Partnered with Engineering leads on technical feasibility and implementation planning. Collaborated with Data Science on experiment analysis requirements. Facilitated workshops with stakeholders to align on scope and trade-offs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Process -->
+            <div class="content-block">
+                <h2 class="block-title">Design Process & Methodology</h2>
+                <div class="block-text">
+                    <p>I employed a structured, data-informed approach that balanced user needs with technical constraints and business objectives. The process was iterative, with regular checkpoints for validation and alignment.</p>
+                </div>
+                
+                <div class="process-diagram">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Discovery & Analysis</h3>
+                        <p class="step-description">Stakeholder interviews, data analysis, user observations, competitive benchmarking</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Problem Definition</h3>
+                        <p class="step-description">Journey mapping, pain point prioritization, success metric definition</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Solution Exploration</h3>
+                        <p class="step-description">Workshops, concept sketching, information architecture, user flows</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h3 class="step-title">Design & Validation</h3>
+                        <p class="step-description">Interactive prototyping, usability testing, iterative refinement</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <h3 class="step-title">Delivery & Impact</h3>
+                        <p class="step-description">Design specs, engineering collaboration, launch planning, impact measurement</p>
+                    </div>
+                </div>
+                
+                <div class="design-process">
+                    <h3 class="process-title">Key Design Decisions</h3>
+                    <div class="block-text">
+                        <p><strong>Progressive Disclosure:</strong> Instead of presenting all configuration options at once, I implemented a step-by-step wizard that revealed complexity based on user expertise level. Novice users could set up basic experiments quickly, while advanced users could access granular controls.</p>
+                        
+                        <p><strong>Contextual Guidance:</strong> Based on research showing that users often made errors in statistical parameter selection, I embedded inline education and validation directly in the interface, reducing configuration errors by 45%.</p>
+                        
+                        <p><strong>Reusable Templates:</strong> I analyzed the most common experiment types and created reusable templates that pre-populated standard configurations, saving users an average of 15 minutes per experiment setup.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visual Design -->
+            <div class="content-block">
+                <h2 class="block-title">Visual Design & System Thinking</h2>
+                <div class="block-text">
+                    <p>The UI needed to handle complex data relationships while maintaining clarity. I extended Booking.com's design system with custom components for experiment visualization and statistical controls.</p>
+                    
+                    <p>I created a consistent visual language for experiment states (draft, running, completed, paused) that worked across all platform views. This required close collaboration with the design systems team to ensure components were reusable across other internal tools.</p>
+                </div>
+                
+                <div class="image-container">
+                    <div style="background: linear-gradient(135deg, #2563eb, #1e40af); height: 300px; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: 600;">
+                        Experiment Dashboard Visualization
+                    </div>
+                </div>
+                <div class="image-caption">Redesigned dashboard providing at-a-glance status of all experiments with clear visual hierarchy</div>
+            </div>
+
+            <!-- Results & Impact -->
+            <div class="content-block">
+                <h2 class="block-title">Results & Business Impact</h2>
+                <div class="block-text">
+                    <p>The redesigned platform launched to all product teams in Q1 2019. We measured impact across multiple dimensions:</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h3 class="highlight-title">Quantitative Impact</h3>
+                    <div class="block-text">
+                        <p><strong>Efficiency Gains:</strong> Average experiment setup time decreased from 45 to 27 minutes (40% reduction), enabling teams to run more experiments per quarter.</p>
+                        
+                        <p><strong>Quality Improvement:</strong> Experiment success rates (statistically significant results without technical errors) increased from 65% to 85% (30% relative improvement).</p>
+                        
+                        <p><strong>Adoption & Satisfaction:</strong> User satisfaction scores increased from 3.2 to 4.5/5. Support tickets related to the platform decreased by 60%.</p>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <h3 class="highlight-title">Strategic Impact</h3>
+                    <div class="block-text">
+                        <p><strong>Accelerated Innovation:</strong> The reduced friction in experiment setup allowed product teams to test more hypotheses, accelerating the product innovation cycle.</p>
+                        
+                        <p><strong>Improved Decision Quality:</strong> With fewer experiment errors and clearer result visualization, product decisions became more data-informed and reliable.</p>
+                        
+                        <p><strong>Scalable Foundation:</strong> The modular design system I co-created with engineering became the foundation for future internal tools, reducing development time for subsequent projects by approximately 40%.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reflection -->
+            <div class="content-block">
+                <h2 class="block-title">Reflection & Learnings</h2>
+                <div class="block-text">
+                    <p>This project exemplified the Senior Product Designer role at scale: translating ambiguous requirements into a coherent product strategy, making complex technical concepts accessible, and driving measurable business impact through design.</p>
+                    
+                    <p><strong>Key Learnings:</strong></p>
+                    <ul style="color: var(--text-secondary); padding-left: 20px; margin-top: 20px;">
+                        <li style="margin-bottom: 12px;"><strong>Early technical collaboration is critical</strong> for complex tools. Involving engineers during the discovery phase helped identify architectural constraints early.</li>
+                        <li style="margin-bottom: 12px;"><strong>Quantitative data complements qualitative insights.</strong> Combining usage analytics with user interviews revealed patterns that neither would show alone.</li>
+                        <li style="margin-bottom: 12px;"><strong>Designing for expertise progression</strong> requires different patterns than consumer products. Advanced users need efficiency while novices need guidance.</li>
+                        <li><strong>Measuring design impact requires baseline metrics.</strong> Establishing clear KPIs before redesign allowed us to demonstrate tangible business value.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Back Button -->
+            <div class="back-button">
+                <a href="index.html#case-studies" class="btn btn-outline">
+                    <i class="fas fa-arrow-left" style="margin-right: 8px;"></i>
+                    View All Case Studies
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-contact">
+                    <h3>Get In Touch</h3>
+                    <p>Interested in discussing product design opportunities or collaboration?</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p>j.daudhria@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Phone</h4>
+                                <p>+31 684723103</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/jadvinderdaudhria" class="social-link" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="bit.ly/Jadvinder-Portfolio" class="social-link" target="_blank">
+                            <i class="fas fa-briefcase"></i>
+                        </a>
+                        <a href="mailto:j.daudhria@gmail.com" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-availability">
+                    <h3>Senior Product Design Expertise</h3>
+                    <p>20+ years specializing in B2B and technically complex products. End-to-end ownership from discovery to delivery. Currently at Booking.com, Amsterdam.</p>
+                    
+                    <div style="margin-top: 24px;">
+                        <a href="index.html" class="btn">
+                            <i class="fas fa-home" style="margin-right: 8px;"></i>
+                            Back to Portfolio
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Jadvinder Daudhria. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+        
+        // Mobile Navigation Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        const mobileIcon = mobileToggle.querySelector('i');
+        
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileIcon.classList.toggle('fa-bars');
+            mobileIcon.classList.toggle('fa-times');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileIcon.classList.add('fa-bars');
+                mobileIcon.classList.remove('fa-times');
+            });
+        });
+    </script>
+</body>
+</html>
